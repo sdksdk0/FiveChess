@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 public class UserControlPad extends JPanel
 {
 	public JLabel ipLabel = new JLabel("IP", JLabel.LEFT);
-	public JTextField ipInputted = new JTextField("localhost", 10);
+	public JTextField ipInputted = new JTextField("127.0.0.1", 10);
 	public JButton connectButton = new JButton("连接到服务器");
 	public JButton createButton = new JButton("创建游戏");
 	public JButton joinButton = new JButton("加入游戏");

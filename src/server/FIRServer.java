@@ -17,7 +17,6 @@ import org.eclipse.jface.dialogs.MessageDialog;
 public class FIRServer extends Frame implements ActionListener
 {
 	JButton clearMsgButton = new JButton("清空列表");
-	JButton serverStatusButton = new JButton("服务器状态");
 	JButton closeServerButton = new JButton("关闭服务器");
 	Panel buttonPanel = new Panel();
 	ServerMsgPanel serverMsgPanel = new ServerMsgPanel();
@@ -28,15 +27,13 @@ public class FIRServer extends Frame implements ActionListener
 	
 	public FIRServer()
 	{
-		super("指令汇科技五子棋");
+		super("指令汇科技六子棋");
 		setBackground(Color.LIGHT_GRAY);
+		buttonPanel.setBackground(new Color(224, 255, 255));
 		buttonPanel.setLayout(new FlowLayout());
 		clearMsgButton.setSize(60, 25);
 		buttonPanel.add(clearMsgButton);
 		clearMsgButton.addActionListener(this);
-		serverStatusButton.setSize(75, 25);
-		buttonPanel.add(serverStatusButton);
-		serverStatusButton.addActionListener(this);
 		closeServerButton.setSize(75, 25);
 		buttonPanel.add(closeServerButton);
 		closeServerButton.addActionListener(this);
@@ -108,19 +105,6 @@ public class FIRServer extends Frame implements ActionListener
 		if (e.getSource() == clearMsgButton)
 		{ // 清空服务器信息
 			serverMsgPanel.msgTextArea.setText("");
-		}
-		if (e.getSource() == serverStatusButton)
-		{ // 显示服务器信息
-			try
-			{
-				serverMsgPanel.msgTextArea.append("服务器信息:"
-						+ InetAddress.getLocalHost() + ":"
-						+ serverSocket.getLocalPort() + "\n");
-			}
-			catch (Exception ee)
-			{
-				ee.printStackTrace();
-			}
 		}
 		if (e.getSource() == closeServerButton)
 		{ // 关闭服务器

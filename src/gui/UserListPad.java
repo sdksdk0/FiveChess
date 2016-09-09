@@ -12,14 +12,14 @@ import javax.swing.ListModel;
 //用户列表面板
 public class UserListPad extends Panel
 {
-	public List userList = new List(2);
+	public List userList = new List(12);
 	
 	public UserListPad()
 	{
 		setLayout(new BorderLayout());
 		for (int i = 0; i < 1; i++)
 		{
-			userList.add("system"+i);
+			userList.add("Welcome"+i);
 		}
 		add(userList, BorderLayout.CENTER);
 	}

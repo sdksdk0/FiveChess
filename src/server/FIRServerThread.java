@@ -262,7 +262,7 @@ public class FIRServerThread extends Thread
 	{
 		sendPublicMsg(getUserList());
 		Feedback("/yourname " + (String) clientNameHash.get(clientSocket));
-		Feedback("指令汇科技五子棋客户端");
+		Feedback("指令汇科技六子棋客户端");
 		Feedback("/list --更新用户列表");
 	}
 

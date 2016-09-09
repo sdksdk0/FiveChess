@@ -145,7 +145,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 		{ // 黑棋时
 			chessLinkedCount = 1; // 将该棋子自身算入的话，初始连接数为1
 			//以下每对for循环语句为一组，因为下期的位置能位于中间而非两端
-			for (closeGrid = 1; closeGrid <= 4; closeGrid++)
+			for (closeGrid = 1; closeGrid <= 5; closeGrid++)
 			{ // 遍历相邻4个网格
 				for (chessToCompareIndex = 0; chessToCompareIndex <= chessBlackCount; chessToCompareIndex++)
 				{ // 遍历棋盘上所有黑棋子
@@ -153,7 +153,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 							&& ((yPos * 20) == chessBlack_YPOS[chessToCompareIndex]))
 					{ // 判断当前下的棋子的右边4个棋子是否都为黑棋
 						chessLinkedCount = chessLinkedCount + 1; // 连接数加1
-						if (chessLinkedCount == 5)
+						if (chessLinkedCount == 6)
 						{ // 五子相连时，胜利
 							return true;
 						}
@@ -166,7 +166,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 					break; 
 				}
 			}
-			for (closeGrid = 1; closeGrid <= 4; closeGrid++)
+			for (closeGrid = 1; closeGrid <= 5; closeGrid++)
 			{
 				for (chessToCompareIndex = 0; chessToCompareIndex <= chessBlackCount; chessToCompareIndex++)
 				{
@@ -174,7 +174,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 					    	&& (yPos * 20 == chessBlack_YPOS[chessToCompareIndex]))
 					{ // 判断当前下的棋子的左边4个棋子是否都为黑棋
 						chessLinkedCount++;
-						if (chessLinkedCount == 5)
+						if (chessLinkedCount == 6)
 						{
 							return true;
 						}
@@ -190,7 +190,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 			// 进入新的一组for循环时要将连接数等重置
 			chessLinkedCount = 1;
 			chessLinkedCompare = 1;
-			for (closeGrid = 1; closeGrid <= 4; closeGrid++)
+			for (closeGrid = 1; closeGrid <= 5; closeGrid++)
 			{
 				for (chessToCompareIndex = 0; chessToCompareIndex <= chessBlackCount; chessToCompareIndex++)
 				{
@@ -198,7 +198,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 							&& ((yPos + closeGrid) * 20 == chessBlack_YPOS[chessToCompareIndex]))
 					{ // 判断当前下的棋子的上边4个棋子是否都为黑棋
 						chessLinkedCount++;
-						if (chessLinkedCount == 5)
+						if (chessLinkedCount == 6)
 						{
 							return true;
 						}
@@ -211,7 +211,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 					break;
 				}
 			}
-			for (closeGrid = 1; closeGrid <= 4; closeGrid++)
+			for (closeGrid = 1; closeGrid <= 5; closeGrid++)
 			{
 				for (chessToCompareIndex = 0; chessToCompareIndex <= chessBlackCount; chessToCompareIndex++)
 				{
@@ -219,7 +219,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 							&& ((yPos - closeGrid) * 20 == chessBlack_YPOS[chessToCompareIndex]))
 					{ // 判断当前下的棋子的下边4个棋子是否都为黑棋
 						chessLinkedCount++;
-						if (chessLinkedCount == 5)
+						if (chessLinkedCount == 6)
 						{
 							return true;
 						}
@@ -234,15 +234,15 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 			}
 			chessLinkedCount = 1;
 			chessLinkedCompare = 1;
-			for (closeGrid = 1; closeGrid <= 4; closeGrid++)
+			for (closeGrid = 1; closeGrid <= 5; closeGrid++)
 			{
 				for (chessToCompareIndex = 0; chessToCompareIndex <= chessBlackCount; chessToCompareIndex++)
 				{
 					if (((xPos - closeGrid) * 20 == chessBlack_XPOS[chessToCompareIndex])
 							&& ((yPos + closeGrid) * 20 == chessBlack_YPOS[chessToCompareIndex]))
-					{ // 判断当前下的棋子的左上方向4个棋子是否都为黑棋
+					{ // 判断当前下的棋子的左上方向5个棋子是否都为黑棋
 						chessLinkedCount++;
-						if (chessLinkedCount == 5)
+						if (chessLinkedCount == 6)
 						{
 							return true;
 						}
@@ -255,7 +255,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 					break;
 				}
 			}
-			for (closeGrid = 1; closeGrid <= 4; closeGrid++)
+			for (closeGrid = 1; closeGrid <= 5; closeGrid++)
 			{
 				for (chessToCompareIndex = 0; chessToCompareIndex <= chessBlackCount; chessToCompareIndex++)
 				{
@@ -263,7 +263,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 							&& ((yPos - closeGrid) * 20 == chessBlack_YPOS[chessToCompareIndex]))
 					{ // 判断当前下的棋子的右下方向4个棋子是否都为黑棋
 						chessLinkedCount++;
-						if (chessLinkedCount == 5)
+						if (chessLinkedCount == 6)
 						{
 							return true;
 						}
@@ -278,7 +278,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 			}
 			chessLinkedCount = 1;
 			chessLinkedCompare = 1;
-			for (closeGrid = 1; closeGrid <= 4; closeGrid++)
+			for (closeGrid = 1; closeGrid <= 5; closeGrid++)
 			{
 				for (chessToCompareIndex = 0; chessToCompareIndex <= chessBlackCount; chessToCompareIndex++)
 				{
@@ -286,7 +286,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 							&& ((yPos + closeGrid) * 20 == chessBlack_YPOS[chessToCompareIndex]))
 					{ // 判断当前下的棋子的右上方向4个棋子是否都为黑棋
 						chessLinkedCount++;
-						if (chessLinkedCount == 5)
+						if (chessLinkedCount == 6)
 						{
 							return true;
 						}
@@ -299,7 +299,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 					break;
 				}
 			}
-			for (closeGrid = 1; closeGrid <= 4; closeGrid++)
+			for (closeGrid = 1; closeGrid <= 5; closeGrid++)
 			{
 				for (chessToCompareIndex = 0; chessToCompareIndex <= chessBlackCount; chessToCompareIndex++)
 				{
@@ -307,7 +307,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 							&& ((yPos - closeGrid) * 20 == chessBlack_YPOS[chessToCompareIndex]))
 					{ // 判断当前下的棋子的左下方向4个棋子是否都为黑棋
 						chessLinkedCount++;
-						if (chessLinkedCount == 5)
+						if (chessLinkedCount == 6)
 						{
 							return true;
 						}
@@ -324,7 +324,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 		else if (chessColor == -1)
 		{ // 白棋时
 			chessLinkedCount = 1;
-			for (closeGrid = 1; closeGrid <= 4; closeGrid++)
+			for (closeGrid = 1; closeGrid <= 5; closeGrid++)
 			{
 				for (chessToCompareIndex = 0; chessToCompareIndex <= chessWhiteCount; chessToCompareIndex++)
 				{
@@ -332,7 +332,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 							&& (yPos * 20 == chessWhite_YPOS[chessToCompareIndex]))
 					{// 判断当前下的棋子的右边4个棋子是否都为白棋
 						chessLinkedCount++;
-						if (chessLinkedCount == 5)
+						if (chessLinkedCount == 6)
 						{
 							return true;
 						}
@@ -345,7 +345,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 					break;
 				}
 			}
-			for (closeGrid = 1; closeGrid <= 4; closeGrid++)
+			for (closeGrid = 1; closeGrid <= 5; closeGrid++)
 			{
 				for (chessToCompareIndex = 0; chessToCompareIndex <= chessWhiteCount; chessToCompareIndex++)
 				{
@@ -353,7 +353,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 							&& (yPos * 20 == chessWhite_YPOS[chessToCompareIndex]))
 					{// 判断当前下的棋子的左边4个棋子是否都为白棋
 						chessLinkedCount++;
-						if (chessLinkedCount == 5)
+						if (chessLinkedCount == 6)
 						{
 							return true;
 						}
@@ -368,7 +368,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 			}
 			chessLinkedCount = 1;
 			chessLinkedCompare = 1;
-			for (closeGrid = 1; closeGrid <= 4; closeGrid++)
+			for (closeGrid = 1; closeGrid <= 5; closeGrid++)
 			{
 				for (chessToCompareIndex = 0; chessToCompareIndex <= chessWhiteCount; chessToCompareIndex++)
 				{
@@ -376,7 +376,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 							&& ((yPos + closeGrid) * 20 == chessWhite_YPOS[chessToCompareIndex]))
 					{// 判断当前下的棋子的上边4个棋子是否都为白棋
 						chessLinkedCount++;
-						if (chessLinkedCount == 5)
+						if (chessLinkedCount == 6)
 						{
 							return true;
 						}
@@ -389,7 +389,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 					break;
 				}
 			}
-			for (closeGrid = 1; closeGrid <= 4; closeGrid++)
+			for (closeGrid = 1; closeGrid <= 5; closeGrid++)
 			{
 				for (chessToCompareIndex = 0; chessToCompareIndex <= chessWhiteCount; chessToCompareIndex++)
 				{
@@ -397,7 +397,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 							&& ((yPos - closeGrid) * 20 == chessWhite_YPOS[chessToCompareIndex]))
 					{// 判断当前下的棋子的下边4个棋子是否都为白棋
 						chessLinkedCount++;
-						if (chessLinkedCount == 5)
+						if (chessLinkedCount == 6)
 						{
 							return true;
 						}
@@ -412,7 +412,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 			}
 			chessLinkedCount = 1;
 			chessLinkedCompare = 1;
-			for (closeGrid = 1; closeGrid <= 4; closeGrid++)
+			for (closeGrid = 1; closeGrid <= 5; closeGrid++)
 			{
 				for (chessToCompareIndex = 0; chessToCompareIndex <= chessWhiteCount; chessToCompareIndex++)
 				{
@@ -420,7 +420,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 							&& ((yPos + closeGrid) * 20 == chessWhite_YPOS[chessToCompareIndex]))
 					{// 判断当前下的棋子的左上方向4个棋子是否都为白棋
 						chessLinkedCount++;
-						if (chessLinkedCount == 5)
+						if (chessLinkedCount == 6)
 						{
 							return true;
 						}
@@ -433,7 +433,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 					break;
 				}
 			}
-			for (closeGrid = 1; closeGrid <= 4; closeGrid++)
+			for (closeGrid = 1; closeGrid <= 5; closeGrid++)
 			{
 				for (chessToCompareIndex = 0; chessToCompareIndex <= chessWhiteCount; chessToCompareIndex++)
 				{
@@ -441,7 +441,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 							&& ((yPos - closeGrid) * 20 == chessWhite_YPOS[chessToCompareIndex]))
 					{// 判断当前下的棋子的右下方向4个棋子是否都为白棋
 						chessLinkedCount++;
-						if (chessLinkedCount == 5)
+						if (chessLinkedCount == 6)
 						{
 							return true;
 						}
@@ -456,7 +456,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 			}
 			chessLinkedCount = 1;
 			chessLinkedCompare = 1;
-			for (closeGrid = 1; closeGrid <= 4; closeGrid++)
+			for (closeGrid = 1; closeGrid <= 5; closeGrid++)
 			{
 				for (chessToCompareIndex = 0; chessToCompareIndex <= chessWhiteCount; chessToCompareIndex++)
 				{
@@ -464,7 +464,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 							&& ((yPos + closeGrid) * 20 == chessWhite_YPOS[chessToCompareIndex]))
 					{// 判断当前下的棋子的右上方向4个棋子是否都为白棋
 						chessLinkedCount++;
-						if (chessLinkedCount == 5)
+						if (chessLinkedCount == 6)
 						{
 							return true;
 						}
@@ -477,7 +477,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 					break;
 				}
 			}
-			for (closeGrid = 1; closeGrid <= 4; closeGrid++)
+			for (closeGrid = 1; closeGrid <= 5; closeGrid++)
 			{
 				for (chessToCompareIndex = 0; chessToCompareIndex <= chessWhiteCount; chessToCompareIndex++)
 				{
@@ -485,7 +485,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 							&& ((yPos - closeGrid) * 20 == chessWhite_YPOS[chessToCompareIndex]))
 					{// 判断当前下的棋子的左下方向4个棋子是否都为白棋
 						chessLinkedCount++;
-						if (chessLinkedCount == 5)
+						if (chessLinkedCount == 6)
 						{
 							return (true);
 						}

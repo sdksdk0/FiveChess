@@ -42,7 +42,7 @@ public class FIRClientThread extends Thread
 		else if (msgReceived.startsWith("/yourname "))
 		{ // 收到的信息为用户本名时
 			firClient.chessClientName = msgReceived.substring(10); // 取得用户本名
-			firClient.setTitle("指令汇科技五子棋客户端 " + "用户名:"
+			firClient.setTitle("指令汇科技六子棋客户端 " + "用户名:"
 					+ firClient.chessClientName); // 设置程序Frame的标题
 		}
 		else if (msgReceived.equals("/reject"))

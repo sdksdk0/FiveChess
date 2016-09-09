@@ -24,8 +24,10 @@ public class ServerMsgPanel extends Panel
 		setLayout(new BorderLayout());
 		msgPanel.setLayout(new FlowLayout());
 		msgPanel.setSize(210, 210);
+		statusPanel.setBackground(new Color(173, 216, 230));
 		statusPanel.setLayout(new BorderLayout());
 		statusPanel.setSize(210, 50);
+		msgTextArea.setBackground(new Color(224, 255, 255));
 		msgPanel.add(msgTextArea);
 		statusPanel.add(statusLabel, BorderLayout.WEST);
 		add(msgPanel, BorderLayout.CENTER);

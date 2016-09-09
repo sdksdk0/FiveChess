@@ -21,8 +21,15 @@ import java.io.IOException;
 import java.net.Socket;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import pad.FIRPad;
+
+import javax.swing.JLabel;
+
+import java.awt.SystemColor;
+
+import javax.swing.ImageIcon;
 
 
 
@@ -70,16 +77,22 @@ public class FIRClient extends JFrame implements ActionListener, KeyListener
 	// 构造方法，创建界面
 	public FIRClient()
 	{
-		super("指令汇科技五子棋客户端");
+		super("指令汇科技六子棋客户端");
 		getContentPane().setLayout(new BorderLayout());
 		host = userControlPad.ipInputted.getText();
 		
 		eastPanel.setLayout(new BorderLayout());
 		eastPanel.add(userListPad, BorderLayout.NORTH);
 		eastPanel.add(userChatPad, BorderLayout.CENTER);
-		eastPanel.setBackground(Color.LIGHT_GRAY);
+		
+		JLabel label = new JLabel("指令汇科技，您的贴身大数据管家");
+		label.setIcon(new ImageIcon(FIRClient.class.getResource("/image/logoicon.png")));
+		label.setBackground(new Color(224, 255, 255));
+		userChatPad.add(label, BorderLayout.NORTH);
+		eastPanel.setBackground(SystemColor.activeCaption);
 		
 		userInputPad.contentInputted.addKeyListener(this);
+		firPad.statusText.setLocation(42, 5);
 		firPad.setBackground(new Color(153, 255, 204));
 
 		firPad.host = userControlPad.ipInputted.getText();
@@ -199,7 +212,9 @@ public class FIRClient extends JFrame implements ActionListener, KeyListener
 				}
 				catch (Exception ee){}
 			}
-			System.exit(0);
+			if(JOptionPane.showConfirmDialog(this, "当前游戏还未保存，确认退出么?")==JOptionPane.OK_OPTION){
+				System.exit(0);	
+			};
 		}
 		if (e.getSource() == userControlPad.joinButton)
 		{ // 加入游戏按钮单击事件
