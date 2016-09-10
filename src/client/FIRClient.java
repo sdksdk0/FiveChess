@@ -2,7 +2,6 @@ package client;
 
 import gui.UserChatPad;
 import gui.UserControlPad;
-import gui.UserInputPad;
 import gui.UserListPad;
 
 import java.awt.BorderLayout;
@@ -48,8 +47,7 @@ public class FIRClient extends JFrame implements ActionListener, KeyListener
 	String host = null;
 	// 主机端口
 	int port = 12345;
-	// 是否在聊天
-	boolean isOnChat = false;
+
     // 是否在下棋
 	boolean isOnChess = false;
 	// 游戏是否进行中
@@ -64,8 +62,7 @@ public class FIRClient extends JFrame implements ActionListener, KeyListener
 	UserChatPad userChatPad = new UserChatPad();
 	// 用户操作区
 	UserControlPad userControlPad = new UserControlPad();
-	// 用户输入区
-	UserInputPad userInputPad = new UserInputPad();
+	
 	// 下棋区
 	FIRPad firPad = new FIRPad();
 	// 面板区
@@ -85,19 +82,18 @@ public class FIRClient extends JFrame implements ActionListener, KeyListener
 		eastPanel.add(userListPad, BorderLayout.NORTH);
 		eastPanel.add(userChatPad, BorderLayout.CENTER);
 		
-		JLabel label = new JLabel("指令汇科技，您的贴身大数据管家");
+		JLabel label = new JLabel("指令汇科技,您的贴身大数据管家");
 		label.setIcon(new ImageIcon(FIRClient.class.getResource("/image/logoicon.png")));
 		label.setBackground(new Color(224, 255, 255));
 		userChatPad.add(label, BorderLayout.NORTH);
 		eastPanel.setBackground(SystemColor.activeCaption);
 		
-		userInputPad.contentInputted.addKeyListener(this);
+	
 		firPad.statusText.setLocation(42, 5);
 		firPad.setBackground(new Color(153, 255, 204));
 
 		firPad.host = userControlPad.ipInputted.getText();
 		centerPanel.add(firPad, BorderLayout.CENTER);
-		centerPanel.add(userInputPad, BorderLayout.SOUTH);
 		centerPanel.setBackground(Color.WHITE);
 		userControlPad.connectButton.addActionListener(this);
 		userControlPad.createButton.addActionListener(this);
@@ -107,22 +103,21 @@ public class FIRClient extends JFrame implements ActionListener, KeyListener
 		userControlPad.createButton.setEnabled(false);
 		userControlPad.joinButton.setEnabled(false);
 		userControlPad.cancelButton.setEnabled(false);
+		userControlPad.connectButton.setBackground(new Color(154, 205, 50));
+		userControlPad.ipInputted.setBackground(new Color(154, 205, 50));
+		userControlPad.exitButton.setBackground(new Color(154, 205, 50));
+		userControlPad.cancelButton.setBackground(new Color(154, 205, 50));
+		userControlPad.joinButton.setBackground(new Color(154, 205, 50));
+		userControlPad.createButton.setBackground(new Color(154, 205, 50));
+		userControlPad.setBackground(new Color(255, 228, 181));
 		
 		southPanel.add(userControlPad, BorderLayout.CENTER);
-		southPanel.setBackground(new Color(153, 102, 153));
+		southPanel.setBackground(new Color(245, 245, 220));
 
 		addWindowListener(new WindowAdapter()
 		{
 			public void windowClosing(WindowEvent e)
 			{
-				if (isOnChat)
-				{ // 聊天中
-					try
-					{  // 关闭客户端套接口
-						clientSocket.close();
-					}
-					catch (Exception ed){}
-				}
 				if (isOnChess || isGameConnected)
 				{ // 下棋中
 					try
@@ -160,13 +155,12 @@ public class FIRClient extends JFrame implements ActionListener, KeyListener
 			FIRClientThread clientthread = new FIRClientThread(this);
 			// 启动线程，等待聊天信息
 			clientthread.start();
-			isOnChat = true;
 			return true;
 		}
 		catch (IOException ex)
 		{
 			userChatPad.chatTextArea
-					.setText("不能连接!\n");
+					.setText("与服务器失去连接!\n");
 		}
 		return false;
 	}
@@ -191,19 +185,11 @@ public class FIRClient extends JFrame implements ActionListener, KeyListener
 			catch (Exception ei)
 			{
 				userChatPad.chatTextArea
-						.setText("不能连接!\n");
+						.setText("连接失败，请重试!\n");
 			}
 		}
 		if (e.getSource() == userControlPad.exitButton)
 		{ // 离开游戏按钮单击事件
-			if (isOnChat)
-			{  // 若用户处于聊天状态中
-				try
-				{ // 关闭客户端套接口
-					clientSocket.close();
-				}
-				catch (Exception ed){}
-			}
 			if (isOnChess || isGameConnected)
 			{ // 若用户处于游戏状态中
 				try
@@ -264,7 +250,7 @@ public class FIRClient extends JFrame implements ActionListener, KeyListener
 					userControlPad.joinButton.setEnabled(true);
 					userControlPad.cancelButton.setEnabled(false);
 					userChatPad.chatTextArea
-							.setText("不能连接: \n" + ee);
+							.setText("与服务器失去连接: \n" + ee);
 				}
 			}
 		}
@@ -306,7 +292,7 @@ public class FIRClient extends JFrame implements ActionListener, KeyListener
 				userControlPad.joinButton.setEnabled(true);
 				userControlPad.cancelButton.setEnabled(false);
 				ec.printStackTrace();
-				userChatPad.chatTextArea.setText("不能连接: \n"
+				userChatPad.chatTextArea.setText("与服务器失去连接: \n"
 						+ ec);
 			}
 		}
@@ -332,48 +318,8 @@ public class FIRClient extends JFrame implements ActionListener, KeyListener
 		}
 	}
 
-	public void keyPressed(KeyEvent e)
-	{
-		TextField inputwords = (TextField) e.getSource();
-		if (e.getKeyCode() == KeyEvent.VK_ENTER)
-		{ // 处理回车按键事件
-			if (userInputPad.userChoice.getSelectedItem().equals("所有用户"))
-			{ // 给所有人发信息
-				try
-				{
-					// 发送信息
-					outputStream.writeUTF(inputwords.getText());
-					inputwords.setText("");
-				}
-				catch (Exception ea)
-				{
-					userChatPad.chatTextArea
-							.setText("不能连接到服务器!\n");
-					userListPad.userList.removeAll();
-					userInputPad.userChoice.removeAll();
-					inputwords.setText("");
-					userControlPad.connectButton.setEnabled(true);
-				}
-			}
-			else
-			{ // 给指定人发信息
-				try
-				{
-					outputStream.writeUTF("/" + userInputPad.userChoice.getSelectedItem()
-							+ " " + inputwords.getText());
-					inputwords.setText("");
-				}
-				catch (Exception ea)
-				{
-					userChatPad.chatTextArea
-							.setText("不能连接到服务器!\n");
-					userListPad.userList.removeAll();
-					userInputPad.userChoice.removeAll();
-					inputwords.setText("");
-					userControlPad.connectButton.setEnabled(true);
-				}
-			}
-		}
+	public void keyPressed(KeyEvent e){
+	
 	}
 
 	public void keyTyped(KeyEvent e) {}

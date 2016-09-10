@@ -17,10 +17,9 @@ public class UserListPad extends Panel
 	public UserListPad()
 	{
 		setLayout(new BorderLayout());
-		for (int i = 0; i < 1; i++)
-		{
-			userList.add("Welcome"+i);
-		}
+
+		userList.add("Welcome");
+
 		add(userList, BorderLayout.CENTER);
 	}
 }

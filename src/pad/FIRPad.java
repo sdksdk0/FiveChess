@@ -154,7 +154,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 					{ // 判断当前下的棋子的右边4个棋子是否都为黑棋
 						chessLinkedCount = chessLinkedCount + 1; // 连接数加1
 						if (chessLinkedCount == 6)
-						{ // 五子相连时，胜利
+						{ // 六子相连时，胜利
 							return true;
 						}
 					}
@@ -196,7 +196,7 @@ public class FIRPad extends Panel implements MouseListener, ActionListener
 				{
 					if ((xPos * 20 == chessBlack_XPOS[chessToCompareIndex])
 							&& ((yPos + closeGrid) * 20 == chessBlack_YPOS[chessToCompareIndex]))
-					{ // 判断当前下的棋子的上边4个棋子是否都为黑棋
+					{ // 判断当前下的棋子的上边5个棋子是否都为黑棋
 						chessLinkedCount++;
 						if (chessLinkedCount == 6)
 						{

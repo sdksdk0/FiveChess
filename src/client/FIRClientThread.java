@@ -23,21 +23,18 @@ public class FIRClientThread extends Thread
 			int userNumber = 0;
 			// 清空客户端用户列表
 			firClient.userListPad.userList.removeAll();
-			// 清空客户端用户下拉框
-			firClient.userInputPad.userChoice.removeAll();
-			// 给客户端用户下拉框添加一个选项
-			firClient.userInputPad.userChoice.addItem("所有用户");
+			
+			
 			while (userToken.hasMoreTokens())
 			{ // 当收到的用户信息列表中存在数据时
 				String user = (String) userToken.nextToken(" "); // 取得用户信息
 				if (userNumber > 0 && !user.startsWith("[inchess]"))
 				{ // 用户信息有效时
 					firClient.userListPad.userList.add(user);// 将用户信息添加到用户列表中
-					firClient.userInputPad.userChoice.addItem(user); // 将用户信息添加到用户下拉框中
 				}
 				userNumber++;
 			}
-			firClient.userInputPad.userChoice.setSelectedIndex(0);// 下拉框默认选中所有人
+			
 		}
 		else if (msgReceived.startsWith("/yourname "))
 		{ // 收到的信息为用户本名时

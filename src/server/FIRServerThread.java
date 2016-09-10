@@ -311,7 +311,7 @@ public class FIRServerThread extends Thread
 			serverMsgPanel.statusLabel.setText("当前连接数:" + clientDataHash.size());
 		}
 		try
-		{	// 等待连接到主机的信息
+		{	
 			inputData = new DataInputStream(clientSocket.getInputStream());
 			sendInitMsg();
 			while (true)
